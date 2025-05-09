@@ -1,33 +1,36 @@
-// Render map with sector markers
-function renderMap(data) {
-  const map = L.map("map").setView([-1.95, 30.06], 8); // Centered on Rwanda
+// map.js
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; OpenStreetMap contributors',
+function renderMap(data) {
+  const map = L.map('projectMap').setView([-1.95, 30.06], 8); // Kigali-centered map
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
   }).addTo(map);
 
   const sectorColors = {
-    Transport: "red",
-    Energy: "blue",
-    "Water & Sanitation": "green",
-    Other: "orange"
+    Energy: 'red',
+    Transport: 'blue',
+    "Water & Sanitation": 'green',
+    Other: 'purple'
   };
 
   data.forEach(item => {
-    if (!item.lat || !item.lng) return;
+    if (item.lat && item.lng) {
+      const marker = L.circleMarker([item.lat, item.lng], {
+        color: sectorColors[item.sector] || 'gray',
+        radius: 8,
+        fillOpacity: 0.8
+      });
 
-    const sector = item.sector || "Other";
-    const color = sectorColors[sector] || "gray";
+      marker.bindPopup(`
+        <strong>${item.project}</strong><br>
+        Sector: ${item.sector}<br>
+        Status: ${item.status}<br>
+        Date: ${item.date}
+      `);
 
-    const marker = L.circleMarker([item.lat, item.lng], {
-      radius: 8,
-      color,
-      fillColor: color,
-      fillOpacity: 0.7,
-    });
-
-    marker
-      .bindPopup(`<strong>${item.project}</strong><br>${sector}<br>Status: ${item.status}`)
-      .addTo(map);
+      marker.addTo(map);
+    }
   });
 }
