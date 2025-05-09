@@ -1,0 +1,34 @@
+[
+  {
+    "project": "Kigali-Rubavu Road Upgrade",
+    "sector": "Transport",
+    "status": "Completed",
+    "date": "2025-04-15",
+    "lat": -1.9501,
+    "lng": 30.0588
+  },
+  {
+    "project": "Nyabarongo II Hydro Project",
+    "sector": "Energy",
+    "status": "Overdue",
+    "date": "2025-03-10",
+    "lat": -1.9802,
+    "lng": 30.1122
+  },
+  {
+    "project": "Kigali Water Supply Expansion",
+    "sector": "Water & Sanitation",
+    "status": "Due Soon",
+    "date": "2025-05-11",
+    "lat": -1.9404,
+    "lng": 30.0456
+  },
+  {
+    "project": "District Development Facility",
+    "sector": "Other",
+    "status": "Completed",
+    "date": "2025-02-01",
+    "lat": -1.9375,
+    "lng": 30.1301
+  }
+]
