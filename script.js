@@ -1,31 +1,43 @@
-// Load data and initialize dashboard
-document.addEventListener("DOMContentLoaded", async () => {
-  const summaryContainer = document.getElementById("summary");
-  const performanceCtx = document.getElementById("performanceChart").getContext("2d");
-  const workCtx = document.getElementById("workProgressChart").getContext("2d");
+// script.js
 
-  const data = await fetch("data.json").then(res => res.json());
-  const users = await fetch("users.json").then(res => res.json());
-
-  renderSummary(data);
-  renderPerformanceChart(data, performanceCtx);
-  renderWorkProgressChart(users, workCtx);
-  renderMap(data);
+document.addEventListener("DOMContentLoaded", () => {
+  loadUsers();
+  loadData();
 });
 
-// Render summary stats
-function renderSummary(data) {
-  const summaryContainer = document.getElementById("summary");
-  const total = data.length;
-  const completed = data.filter(item => item.status === "Completed").length;
-  const overdue = data.filter(item => item.status === "Overdue").length;
-  const upcoming = data.filter(item => item.status === "Due Soon").length;
+// Load user info from users.json
+function loadUsers() {
+  fetch("users.json")
+    .then((response) => response.json())
+    .then((users) => {
+      const userContainer = document.getElementById("user-progress");
+      userContainer.innerHTML = "";
 
-  const html = `
-    <div class="summary-card"><h3>Total Tasks</h3><p>${total}</p></div>
-    <div class="summary-card"><h3>Completed</h3><p>${completed}</p></div>
-    <div class="summary-card"><h3>Overdue</h3><p>${overdue}</p></div>
-    <div class="summary-card"><h3>Due Soon</h3><p>${upcoming}</p></div>
-  `;
-  summaryContainer.innerHTML = html;
+      users.forEach((user) => {
+        const userElement = document.createElement("div");
+        userElement.classList.add("user-card");
+
+        userElement.innerHTML = `
+          <strong>${user.name}</strong><br>
+          Completed: ${user.completed} | Active: ${user.active} | Overdue: ${user.overdue}
+        `;
+        userContainer.appendChild(userElement);
+      });
+    })
+    .catch((error) => {
+      console.error("Failed to load users.json", error);
+    });
+}
+
+// Load project data from data.json and pass to charts and map
+function loadData() {
+  fetch("data.json")
+    .then((response) => response.json())
+    .then((data) => {
+      renderCharts(data);
+      renderMap(data);
+    })
+    .catch((error) => {
+      console.error("Failed to load data.json", error);
+    });
 }
