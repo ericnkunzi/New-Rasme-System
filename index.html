@@ -2,38 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AfDB RASME Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RASME - Real-Time Project Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="icon" href="assets/afdb-logo.png" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
+
 <body>
   <header>
-    <img src="assets/afdb-logo.png" alt="AfDB Logo" class="logo"/>
-    <h1>AfDB RASME Dashboard – Rwanda Projects</h1>
-    <button onclick="exportPDF()">Export PDF</button>
+    <img src="assets/afdb-logo.png" alt="AfDB Logo" class="logo" />
+    <h1>RASME Real-Time Project Dashboard</h1>
   </header>
 
   <main>
-    <section id="summary"></section>
-    <section id="charts">
-      <canvas id="performanceChart"></canvas>
-      <canvas id="workProgressChart"></canvas>
+    <!-- Status Summary -->
+    <section class="status-summary" id="statusSummary">
+      <!-- Filled dynamically -->
     </section>
-    <section id="mapContainer">
+
+    <!-- Charts Section -->
+    <section class="charts">
+      <div class="chart-container">
+        <h2>Project Performance</h2>
+        <canvas id="performanceChart"></canvas>
+      </div>
+
+      <div class="chart-container">
+        <h2>Work Progress</h2>
+        <canvas id="workProgressChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Timeline / Baseline -->
+    <section class="chart-container">
+      <h2>Baseline Timeline</h2>
+      <canvas id="baselineChart"></canvas>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-container">
+      <h2>Project Locations</h2>
       <div id="map"></div>
+    </section>
+
+    <!-- PDF Export -->
+    <section class="export">
+      <button onclick="exportPDF()">📄 Export Dashboard to PDF</button>
     </section>
   </main>
 
   <footer>
-    <p>Real-time dashboard powered by KoboToolbox | African Development Bank</p>
+    <p>Developed by Eric – AfDB Rwanda Office | Powered by KoboToolbox & GitHub</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="config.js"></script>
+  <script src="data.json" type="application/json"></script>
+  <script src="users.json" type="application/json"></script>
   <script src="chart.js"></script>
   <script src="map.js"></script>
   <script src="pdf-export.js"></script>
