@@ -1,16 +1,19 @@
-# New RASME System – Real-Time Project Monitoring Dashboard
+# RASME Real-Time Project Dashboard
 
-This is a real-time, web-based dashboard for African Development Bank (AfDB) projects in Rwanda using KoboToolbox data. Designed to replace static Power BI dashboards with an automated, intelligent, mobile-friendly system.
+A real-time, interactive dashboard for tracking African Development Bank (AfDB)-financed projects in Rwanda using KoboToolbox data.
 
-## 🌍 Key Features
+## 🌍 Live Dashboard
+> Accessible anytime, day or night — no login required.
 
-- Real-time project progress dashboard (auto-updated via API)
-- Dynamic charts: status, users, milestones, backlog
-- Interactive sector map with colored markers (Transport, Energy, Water & Sanitation, Other)
-- Multi-user stats and performance tracking
-- Full dashboard export to PDF
-- Mobile-responsive
-- Hosted for free on GitHub Pages
+## 🚀 Features
 
-## 🧩 Folder Structure
+- 🔄 Real-time project reporting (via KoboToolbox API)
+- 📊 Dynamic performance and work progress charts
+- 🗺️ Live project map with sector-colored markers
+- 🗂️ Baseline project timeline
+- 📥 PDF export of the entire dashboard
+- 🧑‍💼 Multi-user reporting logic
+- 🌐 Fully static site — no server needed
+
+## 📁 Project Structure
 
